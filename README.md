@@ -1,6 +1,6 @@
 # React 19 + Next.js 15 Optimistic Updates Demo
 
-![Project Preview](./public/preview.png)
+![Project Preview](./images/preview.png)
 
 A showcase project demonstrating different optimistic UI patterns using React 19 `useOptimistic` and `useTransition` in a Next.js 15 App Router application.
 
