@@ -1,103 +1,207 @@
-import Image from "next/image";
+import LikeButton from './components/LikeButton';
+import OptimisticTodoList from './components/OptimisticTodoList';
+import OptimisticChat from './components/OptimisticChat';
+import OptimisticComments from './components/OptimisticComments';
+import OptimisticBlog from './components/OptimisticBlog';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            🚀 Optimistic Updates Examples
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            How to implement optimistic updates with React 19 & Next.js 15?
+            Here are examples from different scenarios.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          
+          {/* Like Button Örneği */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                1. 👍 Like Button
+              </h2>
+              <p className="text-gray-600">
+                Classic social media like system. Count changes instantly when clicked.
+              </p>
+            </div>
+            <div className="flex flex-col space-y-4">
+              <LikeButton postId="123" initialLikes={42} initialIsLiked={false} />
+              <LikeButton postId="456" initialLikes={89} initialIsLiked={true} />
+            </div>
+          </div>
+
+          {/* Todo List Örneği */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                2. ✅ Todo List
+              </h2>
+              <p className="text-gray-600">
+                Todo add, toggle and delete actions update instantly.
+              </p>
+            </div>
+            <OptimisticTodoList />
+          </div>
+
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Chat Örneği */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                3. 💬 Live Chat
+              </h2>
+              <p className="text-gray-600">
+                Messages appear instantly, bot reply loads in the background.
+              </p>
+            </div>
+            <OptimisticChat />
+          </div>
+
+          {/* Comments Örneği */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                4. 📝 Blog Comments
+              </h2>
+              <p className="text-gray-600">
+                Comment & like system with richer interactions.
+              </p>
+            </div>
+            <OptimisticComments />
+          </div>
+
+        </div>
+
+        {/* Blog Örneği - Full Width */}
+        <div className="mt-12">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                5. 📝 Blog System (Server Actions)
+              </h2>
+              <p className="text-gray-600">
+                Form handling & optimistic updates with Next.js Server Actions.
+              </p>
+            </div>
+            <OptimisticBlog />
+          </div>
+        </div>
+
+        {/* Bilgi Kartları */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-blue-800 mb-3">
+              🎯 What Did We Learn?
+            </h3>
+            <ul className="text-blue-700 text-sm space-y-1">
+              <li>• useOptimistic hook usage</li>
+              <li>• Async flows with useTransition</li>
+              <li>• Handling error states</li>
+              <li>• Loading states</li>
+            </ul>
+          </div>
+
+          <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-green-800 mb-3">
+              ✨ Advantages
+            </h3>
+            <ul className="text-green-700 text-sm space-y-1">
+              <li>• Instant user feedback</li>
+              <li>• Faster perceived UI</li>
+              <li>• Better UX</li>
+              <li>• Smoothness even on slow networks</li>
+            </ul>
+          </div>
+
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-yellow-800 mb-3">
+              ⚠️ Things to Watch Out For
+            </h3>
+            <ul className="text-yellow-700 text-sm space-y-1">
+              <li>• Plan error cases</li>
+              <li>• Keep optimistic state simple</li>
+              <li>• Don’t forget server validation</li>
+              <li>• Handle conflicting updates</li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Büyük Listeler ve Virtualization */}
+        <div className="mt-12 bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl p-6">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4">
+            🚀 Large Lists & Performance
+          </h3>
+          <p className="text-gray-600 mb-6">
+            How to apply optimistic updates in huge lists containing thousands of items?
+            Examples with React Virtuoso & infinite scroll.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link 
+              href="/page3" 
+              className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow border-2 border-purple-200 hover:border-purple-400"
+            >
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">📋</span>
+                <div>
+                  <h4 className="font-semibold text-gray-800">Large List (10K items)</h4>
+                  <p className="text-sm text-gray-600">React Virtuoso + Optimistic Updates</p>
+                </div>
+              </div>
+            </Link>
+            
+            <div className="bg-white rounded-lg p-4 border-2 border-blue-200">
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">💬</span>
+                <div>
+                  <h4 className="font-semibold text-gray-800">Infinite Scroll Comments</h4>
+                  <p className="text-sm text-gray-600">Infinite Loading + Optimistic UI</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Best Practices for Large Lists */}
+        <div className="mt-8 bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-800 mb-3">
+            ✅ Best Practices for Large Lists
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ul className="text-green-700 text-sm space-y-2">
+              <li>• <strong>React Virtuoso:</strong> High performance virtualization</li>
+              <li>• <strong>Memoization:</strong> Use useMemo & useCallback</li>
+              <li>• <strong>Chunk loading:</strong> Load data in chunks</li>
+            </ul>
+            <ul className="text-green-700 text-sm space-y-2">
+              <li>• <strong>Index-based keys:</strong> Use stable keys</li>
+              <li>• <strong>Intersection Observer:</strong> For infinite scroll</li>
+              <li>• <strong>Error boundaries:</strong> Capture failures</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-12 text-center">
+          <p className="text-gray-500 text-sm">
+            🔗 Review these examples to use optimistic updates in your own projects!
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
